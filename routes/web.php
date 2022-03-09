@@ -17,6 +17,12 @@ use App\Http\Controllers\WelcomeController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
-Route::middleware('auth:sanctum')->group(function() {
+Route::middleware(['auth:sanctum','isAdmin'])->group(function() {
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+});
+
+
+Route::middleware(['auth:sanctum','isRegularUser'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 });
+

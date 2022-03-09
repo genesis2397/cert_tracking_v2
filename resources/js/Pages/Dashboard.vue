@@ -1,13 +1,42 @@
+
 <template>
     <app-layout>
-        <h2 class="text-center mb-3" v-if="$page.props.user.name">Welcome to your dashboard, {{ $page.props.user.name}}</h2>
         <v-row>
-            <v-col>
-                <v-img src="https://images.unsplash.com/photo-1514975614034-99de12b7c550?ixid=MXwxMjA3fDB8MHxzZWFyY2h8MzJ8fGRhc2hib2FyZHxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" height="400px"></v-img>
-                <v-card-text>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores facilis illum dolorum nemo natus omnis voluptatem earum cumque minus aut maiores, at provident consectetur, ipsum aliquam, autem aliquid quasi molestias.
-                </v-card-text>
-            </v-col>
+          <v-col
+            v-for="card in cards"
+            :key="card"
+            cols="12"
+          >
+            <v-card>
+              <v-subheader>{{ card }}</v-subheader>
+
+              <v-list two-line>
+                <template v-for="n in 6">
+                  <v-list-item
+
+                    :key="n"
+                  >
+                    <v-list-item-avatar color="grey darken-1">
+                    </v-list-item-avatar>
+
+                    <v-list-item-content>
+                      <v-list-item-title>Message {{ n }}</v-list-item-title>
+
+                      <v-list-item-subtitle>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
+                      </v-list-item-subtitle>
+                    </v-list-item-content>
+                  </v-list-item>
+
+                  <v-divider
+                    v-if="n !== 6"
+                    :key="`divider-${n}`"
+                    inset
+                  ></v-divider>
+                </template>
+              </v-list>
+            </v-card>
+          </v-col>
         </v-row>
     </app-layout>
 </template>
@@ -17,6 +46,22 @@
     export default {
         components: {
             AppLayout,
-        }
+        },
+            data: () => ({
+      cards: ['Today', 'Yesterday'],
+      drawer: null,
+      links: [
+        ['mdi-inbox-arrow-down', 'Inbox'],
+        ['mdi-send', 'Send'],
+        ['mdi-delete', 'Trash'],
+        ['mdi-alert-octagon', 'Spam'],
+      ],
+    })
     }
 </script>
+
+<style>
+.stick{
+    position: sticky;
+}
+</style>

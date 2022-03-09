@@ -12,6 +12,7 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use Illuminate\Support\Facades\Session;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,17 @@ class FortifyServiceProvider extends ServiceProvider
 
         Fortify::loginView(function () {
             return Inertia::render('Auth/Login');
+        });
+
+        Fortify::requestPasswordResetLinkView(function () {
+            if(Session::has('status')){
+                return Inertia::render('Auth/Forgot-Password', ['props_status'=>Session::get('status')]);
+            }
+            return Inertia::render('Auth/Forgot-Password');
+        });
+
+        Fortify::resetPasswordView(function (Request $request) {
+            return Inertia::render('Auth/Reset-Password', ['props_email' => $request->email, 'token' => $request->token ]);
         });
     }
 }
