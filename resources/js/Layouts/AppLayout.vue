@@ -7,7 +7,7 @@
         <div v-if="!route().current('welcome') && !route().current('login') && !route().current('register') && !route().current('password.request') && !route().current('password.reset')">
             <Header @handleDrawer="drawer = !drawer"/>
         </div>
-            <v-main>
+            <v-main class="main_class_color">
                 <v-container class="py-8 px-6" fluid>
                         <v-row>
                             <v-col>
@@ -33,4 +33,7 @@
 
 <style>
     html { overflow-y: auto; }
+    .main_class_color{
+        background-color: #f7fad8;
+    }
 </style>

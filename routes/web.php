@@ -24,5 +24,7 @@ Route::middleware(['auth:sanctum','isAdmin'])->group(function() {
 
 Route::middleware(['auth:sanctum','isRegularUser'])->group(function() {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/upload_file', [DashboardController::class, 'upload_file'])->name('upload_file');
+    Route::get('/delano', [DashboardController::class, 'delano'])->name('delano');
 });
 

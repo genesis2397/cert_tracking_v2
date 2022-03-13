@@ -15,7 +15,12 @@ class DashboardController extends Controller
     public function index() {
         return Inertia::render('Dashboard');
     }
-
+    public function upload_file() {
+        return Inertia::render('Upload');
+    }
+    public function delano(Request $request) {
+        return response()->json($request);
+    }
     /**
      * Show the form for creating a new resource.
      *

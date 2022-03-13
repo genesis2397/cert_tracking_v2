@@ -7,22 +7,25 @@
             :key="card"
             cols="12"
           >
-            <v-card>
+            <v-card color="#76528BFF" dark>
               <v-subheader>{{ card }}</v-subheader>
 
-              <v-list two-line>
+              <v-list two-line color="#D1C4E9">
                 <template v-for="n in 6">
                   <v-list-item
 
                     :key="n"
                   >
-                    <v-list-item-avatar color="grey darken-1">
+                    <v-list-item-avatar color="#76528BFF">
+                        <v-icon dark size="43">
+                            mdi-account-circle
+                        </v-icon>
                     </v-list-item-avatar>
 
-                    <v-list-item-content>
+                    <v-list-item-content class="color_for_card_text">
                       <v-list-item-title>Message {{ n }}</v-list-item-title>
 
-                      <v-list-item-subtitle>
+                      <v-list-item-subtitle class="color_for_text">
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nihil repellendus distinctio similique
                       </v-list-item-subtitle>
                     </v-list-item-content>
@@ -64,4 +67,11 @@
 .stick{
     position: sticky;
 }
+.color_for_text{
+    color: #76528BFF !important;
+}
+.color_for_card_text{
+   color: #76528BFF;
+}
+
 </style>
