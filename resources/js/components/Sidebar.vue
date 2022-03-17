@@ -2,15 +2,15 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      color="#76528BFF"
+      color="#0000B9"
     >
       <v-sheet
-        color="#D1C4E9"
+        color="#82CAFF"
         class="pa-4"
       >
         <v-avatar
           class="mb-4"
-          color="#76528BFF"
+          color="#0000B9"
           size="64"
         >      <v-icon dark size="70">
         mdi-account-circle
@@ -22,7 +22,7 @@
                                 v-model="logout_dialog"
                                 max-width="290"
                                 >
-                                <v-card color="#76528BFF" dark>
+                                <v-card color="#0000B9" dark>
                                     <v-card-title class="text-h5">
                                     Are you sure you want to logout?
                                     </v-card-title>
@@ -57,7 +57,7 @@
                 <form class="d-inline-flex align-center">
                     <v-btn text type="submit" class="sideBarButton_2" :href="route('dashboard')" color="white">
                         <v-icon color="blue lighten-3" left small>mdi-view-dashboard</v-icon>
-                        Dashboard
+                        Records
                     </v-btn>
                 </form>
             </v-list-item>
@@ -106,15 +106,15 @@
 <style>
     .sideBarButton{
         width: 187%;
-        background-color: rgb(144, 99, 170);
+        background-color: #1E90FF;
     }
     .sideBarButton_2{
-        width: 147%;
-        background-color: rgb(144, 99, 170);
+        width: 173%;
+        background-color: #1E90FF;
     }
     .sideBarButton_3{
         width: 188%;
-        background-color: rgb(144, 99, 170);
+        background-color: #1E90FF;
     }
 </style>
 

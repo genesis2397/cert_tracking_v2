@@ -2,8 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
+
+use App\Models\User;
+use App\Models\Employee;
+use App\Models\CertificationType;
+use App\Models\EmployeeCertification;
+
+
 
 class DashboardController extends Controller
 {
@@ -18,8 +25,18 @@ class DashboardController extends Controller
     public function upload_file() {
         return Inertia::render('Upload');
     }
-    public function delano(Request $request) {
-        return response()->json($request);
+    public function certificationData() {
+        $cert_data = CertificationType::all()
+        ->map( function($query){
+            return [
+                'text' =>  strtoupper($query->cert_types),
+                'value' => $query->cert_types
+            ];
+        })->toArray();
+
+         $header_default_1 = [['text'=>'OCN','align'=>'start','sortable'=>'false', 'value'=>'id'],['text'=>'Employee Name','value'=>'name']];
+         $header_default_2 = [['text'=>'Action','value'=>'actions', 'sortable'=>'false']];
+        return response()->json(array_merge($header_default_1,$cert_data,$header_default_2));
     }
     /**
      * Show the form for creating a new resource.

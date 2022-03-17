@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app elevate-on-scroll elevation="3" color="#76528BFF" dark>
+  <v-app-bar app elevate-on-scroll elevation="3" color="#0000B9" dark>
       <v-app-bar-nav-icon @click="$emit('handleDrawer')"></v-app-bar-nav-icon>
             <v-toolbar-title>Title</v-toolbar-title>
 

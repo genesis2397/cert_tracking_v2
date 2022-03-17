@@ -2,6 +2,20 @@
 <template>
     <app-layout>
         <v-row>
+            <v-snackbar
+            v-model="snackbar"
+            :timeout="3000"
+            :value="true"
+            absolute
+            bottom
+            color="success"
+            success
+            top
+            right
+            >
+            <v-icon>mdi-check</v-icon>
+            Images uploaded successfully.
+            </v-snackbar>
             <div class="uploader"
             @dragenter="OnDragEnter"
             @dragleave="OnDragLeave"
@@ -31,7 +45,7 @@
                             fab
                             dark
                             small
-                            color="#76528BFF"
+                            color="#0000B9"
                             @click="remove_item([image,files[index]])"
                             >
                             <v-icon dark color="white">
@@ -49,6 +63,80 @@
             </div>
         </div>
         </v-row>
+        <!-- table for images -->
+        <v-row>
+
+        <v-col cols="12" sm="6" md="3">
+      <v-text-field
+        v-model="search"
+        append-icon="mdi-magnify"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+        </v-col>
+
+        </v-row>
+        <v-row class="mt-10">
+            <div>
+                <template>
+                    <v-data-table
+                        :search="search"
+                        :headers="headers"
+                        :items="items"
+                        :page.sync="page"
+                        :items-per-page="itemsPerPage"
+                        hide-default-footer
+                        @page-count="pageCount = $event"
+                        class="elevation-1"
+                        :loading='isLoading'
+                    >
+                        <template slot="item.actions" slot-scope="props">
+                            <v-icon
+                                small
+                                class="mr-2"
+                                @click="editItem(item)"
+                            >
+                                mdi-pencil
+                            </v-icon>
+                            <v-icon
+                                small
+                                @click="deleteItem(item)"
+                            >
+                                mdi-delete
+                            </v-icon>
+                        </template>
+                        <template slot="item.cert_image" slot-scope="props">
+                            <img :src="require('../../../storage/app/images/'+props.item.cert_image).default" style="width:30px; height:auto; cursor:pointer;" @click='scar(props.item.cert_image)'>
+                        </template>
+                    </v-data-table>
+                </template>
+                <div class="text-center pt-2">
+                <v-pagination
+                    v-model="page"
+                    :length="pageCount"
+                    circle
+                    :total-visible="7"
+                ></v-pagination>
+                </div>
+            </div>
+            <div v-if="awesome">
+                <v-btn
+                class="float-left"
+                fab
+                dark
+                x-small
+                color="primary"
+                style="position:relative; left:105px; bottom:25px;"
+                @click="awesome=false"
+                >
+                <v-icon dark>
+                    mdi-close
+                </v-icon>
+                </v-btn>
+          <img :src="require('../../../storage/app/images/'+changed).default" style="width:500px; height:auto; cursor:pointer; position:relative; left:100px;">
+            </div>
+        </v-row>
     </app-layout>
 </template>
 
@@ -59,28 +147,88 @@
             AppLayout,
         },
             data: () => ({
+        absolute : false,
+        awesome : false,
+        snackbar : false,
         isDragging: false,
+        search : '',
+        dialog : true,
         dragCount: 0,
         files: [],
-        images: []
+        changed: '',
+        images: [],
+        status: '',
+        isLoading: true,
+        page: 1,
+        pageCount: 0,
+        itemsPerPage: 10,
+                headers: [
+                // Dynamic headers
+                {
+                    text: 'ID',
+                    value: 'id',
+                    class: 'blue'
+                },
+                {
+                    text: 'Employee ID',
+                    value: 'emp_id',
+                    class: 'blue'
+                },
+                {
+                    text: 'Employee Name',
+                    value: 'name',
+                    class: 'blue'
+                },
+                {
+                    text: 'Certification Name',
+                    value: 'cert_name',
+                    class: 'blue'
+                },
+                {
+                    text: 'Certification Photo',
+                    value: 'cert_image',
+                    class: 'blue'
+                },
+                {
+                    text: 'Date Uploaded',
+                    value: 'uploaded_date',
+                    class: 'blue'
+                },
+                {
+                    text: 'Action',
+                    value: 'actions',
+                    class: 'blue',
+                    sortable: false
+                },
+            ],
+            items: [
+                // {
+                //     emp_id: '#2354461',
+                //     name: 'Jane Doe'
+                // },
+                // {
+                //     emp_id: '#1944545',
+                //     name: 'Michael Jordan'
+                // }
+            ]
     }),
 
     created : function(){
-//         axios.get('/delano', {
-//     params: {
-//       ID: 12345,
-//       COLOR : 'Pink'
-//     }
-//   })
-//         .then(response =>{
-//          console.log(response.data)
-//         })
-//         .catch(error =>{
-//         console.log(error);
-//         })
+        axios.get('/delano')
+        .then(response =>{
+         this.items = response.data;
+         this.isLoading = false;
+        })
+        .catch(error =>{
+        console.log(error);
+        })
     },
 
         methods: {
+        scar(data){
+            this.awesome = true
+            this.changed = data
+        },
         OnDragEnter(e) {
             e.preventDefault();
 
@@ -152,6 +300,8 @@
                 .then(response => {
                     this.images = [];
                     this.files = [];
+                    this.status = response.data.status;
+                    this.snackbar = true;
                 })
         }
     }
@@ -162,7 +312,7 @@
 <style lang="scss" scoped>
 .uploader {
     width: 100%;
-    background: #af92e6;
+    background: #306EFF;
     color: #fff;
     padding: 40px 15px;
     text-align: center;
@@ -251,7 +401,7 @@
     .upload-control {
         position: absolute;
         width: 100%;
-        background: #76528BFF;
+        background: #0000B9;
         top: 0;
         left: 0;
         border-top-left-radius: 7px;
@@ -278,5 +428,11 @@
         font-weight: 1000;
     }
 }
+</style>
+
+<style>
+  tbody tr:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, .05);
+  }
 </style>
 
