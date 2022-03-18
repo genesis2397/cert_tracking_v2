@@ -94,6 +94,7 @@
                   single-line
                   hide-details
                   class="mb-5"
+                  :loading='isLoading'
                 ></v-text-field>
                   <v-data-table
                   :headers="headers"
@@ -129,9 +130,14 @@
                             v-bind="attrs"
                             v-on="on"
                           >
-                            New Item
+                            New Record
                           </v-btn>
                         </template>
+                          <v-form
+                            ref="form"
+                            v-model="valid"
+                            lazy-validation
+                          >
                         <v-card>
                           <v-card-title>
                             <span class="text-h5">{{ formTitle }}</span>
@@ -148,6 +154,7 @@
                                   <v-text-field
                                     v-model="editedItem.id"
                                     label="OCN"
+                                    :rules="[v => !!v || 'OCN is required' , v => Number.isInteger(Number(v)) || 'The value must be an OCN number', v => (v && v.length >= 6) || 'OCN must be greater than 5 characters']"
                                   ></v-text-field>
                                 </v-col>
                                 <v-col
@@ -158,6 +165,8 @@
                                   <v-text-field
                                     v-model="editedItem.name"
                                     label="Employee Name"
+                                    :rules="nameRules"
+                                    v-on:keypress="isLetter($event)"
                                   ></v-text-field>
                                 </v-col>
                                 <v-col
@@ -165,56 +174,60 @@
                                   sm="6"
                                   md="4"
                                 >
-                                <v-combobox
+                                <v-select
                                 v-model="editedItem.manaer"
                                       :items="choices"
                                       label="MANAER"
                                       outlined
                                       dense
                                       rounded
-                                ></v-combobox>
+                                      :menu-props="{ bottom: true, offsetY: true }"
+                                ></v-select>
                                 </v-col>
                                 <v-col
                                   cols="12"
                                   sm="6"
                                   md="4"
                                 >
-                                <v-combobox
+                                <v-select
                                 v-model="editedItem.basic"
                                           :items="choices"
                                           label="BASIC"
                                           outlined
                                           dense
                                           rounded
-                                ></v-combobox>
+                                          :menu-props="{ bottom: true, offsetY: true }"
+                                ></v-select>
                                 </v-col>
                                 <v-col
                                   cols="12"
                                   sm="6"
                                   md="4"
                                 >
-                                <v-combobox
+                                <v-select
                                 v-model="editedItem.tnr"
                                           :items="choices"
                                           label="TNR"
                                           outlined
                                           dense
                                           rounded
-                                ></v-combobox>
+                                          :menu-props="{ bottom: true, offsetY: true }"
+                                ></v-select>
                                 </v-col>
                                 <v-col
                                   cols="12"
                                   sm="6"
                                   md="4"
                                 >
-                                <v-combobox
+                                <v-select
                                 v-model="editedItem.scan"
                                           :items="choices"
                                           label="SCAN"
                                           outlined
                                           dense
                                           rounded
-                                ></v-combobox>
+                                          :menu-props="{ bottom: true, offsetY: true }"
+                                ></v-select>
                                 </v-col>
                               </v-row>
                             </v-container>
@@ -233,15 +246,17 @@
                               color="blue darken-1"
                               text
                               @click="save"
+                              :disabled="!valid || !editedItem.id || !editedItem.name"
                             >
                               Save
                             </v-btn>
                           </v-card-actions>
                         </v-card>
+                        </v-form>
                       </v-dialog>
                       <v-dialog v-model="dialogDelete" max-width="500px">
                         <v-card>
-                          <v-card-title class="text-h5">Are you sure you want to delete this item?</v-card-title>
+                          <v-card-title class="text-h5">Are you sure you want to delete this record?</v-card-title>
                           <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
@@ -330,6 +345,12 @@
             AppLayout,
         },
             data: () => ({
+      isLoading : true,
+      valid : true,
+      nameRules: [
+        v => !!v || 'Name is required',
+        v => (v && v.length >= 5) || 'Name must be greater than 5 characters'
+      ],
       choices : ['✓','N/A'],
       cards: ['Certification Tracking Table'],
               page: 1,
@@ -369,7 +390,7 @@
         headers: [],
                 items: [
           {
-            id: '2034456',
+            id: '203446',
             name: 'Ricky Jamison',
             manaer: '✓',
             basic: 'N/A',
@@ -401,7 +422,7 @@
             scan: 'N/A',
           },
           {
-            id: '10213',
+            id: '102135',
             name: 'Jimmy Falcon',
             manaer: '✓',
             basic: '✓',
@@ -455,7 +476,7 @@
             basic: '✓',
             tnr: '✓',
             scan: '✓',
-          },
+          }, 
         ],
     }),
 
@@ -465,7 +486,7 @@
 
     computed: {
       formTitle () {
-        return this.editedIndex === -1 ? 'New Item' : 'Edit Item'
+        return this.editedIndex === -1 ? 'Add Record' : 'Edit Record'
       },
     },
 
@@ -480,6 +501,7 @@
 
         methods: {
 
+
           getInitialData() {
 
               axios.get('/certificationData')
@@ -492,6 +514,13 @@
               })
 
           },
+
+          isLetter(e) {
+              let char = String.fromCharCode(e.keyCode); // Get the character
+              if(/^[a-zA-Z\s'-.]*$/.test(char)) return true; // Match with regex 
+              else e.preventDefault(); // If not match, don't add to input text
+          },
+
           getColorforFat (calories) {
             if (calories == 'N/A') return 'red'
             else return 'green'
@@ -508,7 +537,7 @@
             if (calories == 'N/A') return 'red'
             else return 'green'
           },
-                editItem (item) {
+      editItem (item) {
         this.editedIndex = this.items.indexOf(item)
         this.editedItem = Object.assign({}, item)
         this.dialog = true
@@ -563,5 +592,6 @@
 .color_for_card_text{
    color: #0000B9;
 }
-
 </style>
+
+

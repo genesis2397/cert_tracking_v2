@@ -61,14 +61,14 @@
                     </v-btn>
                 </form>
             </v-list-item>
-            <v-list-item>
+            <!-- <v-list-item>
                 <form class="d-inline-flex align-center">
                     <v-btn text type="submit" class="sideBarButton_3" :href="route('upload_file')" color="white">
                         <v-icon color="blue lighten-3" left small>mdi-cloud-upload</v-icon>
                         Upload
                     </v-btn>
                 </form>
-            </v-list-item>
+            </v-list-item> -->
             <v-list-item>
                 <form class="d-inline-flex align-center" @click.prevent="logout_dialog=!logout_dialog">
                     <v-btn text type="submit" class="sideBarButton" color="white">
