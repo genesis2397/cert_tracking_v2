@@ -7,7 +7,9 @@
       <v-sheet
         color="#82CAFF"
         class="pa-4"
+        style="height:150px;"
       >
+      <div class='d-flex'>
         <v-avatar
           class="mb-4"
           color="#0000B9"
@@ -15,8 +17,9 @@
         >      <v-icon dark size="70">
         mdi-account-circle
       </v-icon></v-avatar>
-
-        <div>Hello Genesis!</div>
+<v-toolbar-title class='toolbar_title'><img :src="require('../../../storage/app/images/daisho_png.png').default" style="width:200px; height:auto; position: relative; bottom: 55px;"></v-toolbar-title>
+</div>
+        <div class="mb-40" style="position:relative; bottom:130px;">Hello Genesis!</div>
       </v-sheet>
                                   <v-dialog transition="fab-transition"
                                 v-model="logout_dialog"

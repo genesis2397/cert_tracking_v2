@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="shortcut icon" href="{{ url('images/daisho.png') }}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ url('images/daisho_png.png') }}" type="image/x-icon" />
     <title>{{  config('app.name'), 'V-I-F-L' }}</title>
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">

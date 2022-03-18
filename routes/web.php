@@ -35,7 +35,7 @@ Route::get('/test', function(){
         $res[$k] = array_merge($di[$k],$arr[$k]);
     }
 
-    return response()->json($res);
+    dd($res);
 });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
