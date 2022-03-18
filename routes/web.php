@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImagesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+
 use App\Models\CertificationType;
 use App\Models\Employee;
 use App\Models\EmployeeCertification;
@@ -18,22 +19,22 @@ use App\Models\EmployeeCertification;
 |
 */
 Route::get('/test', function(){
-
     $cert_type = CertificationType::all()->pluck('cert_types')->toArray();
-
     $certs = EmployeeCertification::all()->toArray();
 
-    $a = [];
-    foreach( $cert_type as $lo){
-     array_push($a,'');
+    $arr = array();
+    foreach($certs as $ca){
+        $arr[] = array_combine($cert_type,explode(',',$ca['certification_type']));   
     }
-
     $di=array();
     foreach($certs as $cert){
-        $di[] = array_merge($cert,array_combine($cert_type,$a));
+        $di[] = $cert;
     }
-    
-    dd($di);
+    $res = array();
+    foreach($arr as $k => $v){
+        $res[$k] = array_merge($di[$k],$arr[$k]);
+    }
+    dd($res);
 });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
