@@ -9,7 +9,7 @@
           >
             <v-card color="#0000B9" dark height='100%'>
             <div class="mt-5"></div>
-              <v-subheader><h1>{{ card }}</h1></v-subheader>
+              <v-subheader><h1 class="mt-5">{{ card }}</h1></v-subheader>
               <v-card-text>
                 <!-- <template>
                       <v-text-field
@@ -232,7 +232,6 @@
                               </v-row>
                             </v-container>
                           </v-card-text>
-
                           <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn
@@ -254,9 +253,9 @@
                         </v-card>
                         </v-form>
                       </v-dialog>
-                      <v-dialog v-model="dialogDelete" max-width="500px">
+                      <v-dialog v-model="dialogDelete" max-width="500px" transition="fab-transition">
                         <v-card>
-                          <v-card-title class="text-h5">Are you sure you want to delete this record?</v-card-title>
+                          <v-card-title class="text-h5">Are you sure you want to delete this data?</v-card-title>
                           <v-card-actions>
                             <v-spacer></v-spacer>
                             <v-btn color="blue darken-1" text @click="closeDelete">Cancel</v-btn>
