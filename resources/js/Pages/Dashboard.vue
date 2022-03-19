@@ -97,10 +97,10 @@
                   :loading='isLoading'
                 ></v-text-field>
                   <v-data-table
+                  :loading="isTableLoading"
                   :headers="headers"
                   :search="search"
                   :items="items"
-                  sort-by="name"
                   class="elevation-1"
                   :page.sync="page"
                   :items-per-page="itemsPerPage"
@@ -152,7 +152,7 @@
                                   md="4"
                                 >
                                   <v-text-field
-                                    v-model="editedItem.id"
+                                    v-model="editedItem.employee_id"
                                     label="OCN"
                                     :rules="[v => !!v || 'OCN is required' , v => Number.isInteger(Number(v)) || 'The value must be an OCN number', v => (v && v.length >= 6) || 'OCN must be greater than 5 characters']"
                                   ></v-text-field>
@@ -163,7 +163,7 @@
                                   md="4"
                                 >
                                   <v-text-field
-                                    v-model="editedItem.name"
+                                    v-model="editedItem.employee_name"
                                     label="Employee Name"
                                     :rules="nameRules"
                                     v-on:keypress="isLetter($event)"
@@ -245,7 +245,7 @@
                               color="blue darken-1"
                               text
                               @click="save"
-                              :disabled="!valid || !editedItem.id || !editedItem.name"
+                              :disabled="!valid || !editedItem.employee_id || !editedItem.employee_name"
                             >
                               Save
                             </v-btn>
@@ -282,12 +282,6 @@
                     </v-icon>
                   </template>
                   <template v-slot:no-data>
-                    <v-btn
-                      color="primary"
-                      @click="initialize"
-                    >
-                      Reset
-                    </v-btn>
                   </template>
                     <template v-slot:item.manaer="{ item }">
                       <v-chip
@@ -345,6 +339,7 @@
         },
             data: () => ({
       isLoading : true,
+      isTableLoading : false,
       valid : true,
       nameRules: [
         v => !!v || 'Name is required',
@@ -360,16 +355,16 @@
       search: '',
       editedIndex: -1,
       editedItem: {
-        id: '',
-        name: '',
+        employee_id: '',
+        employee_name: '',
         manaer: 'N/A',
         basic: 'N/A',
         tnr: 'N/A',
         scan: 'N/A',
       },
       defaultItem: {
-        id: '',
-        name: '',
+        employee_id: '',
+        employee_name: '',
         manaer: 'N/A',
         basic: 'N/A',
         tnr: 'N/A',
@@ -387,96 +382,7 @@
         itemsPerPage: 10,
         search : '',
         headers: [],
-                items: [
-          {
-            id: '203446',
-            name: 'Ricky Jamison',
-            manaer: '✓',
-            basic: 'N/A',
-            tnr: '✓',
-            scan: 'N/A',
-          },
-          {
-            id: '441265',
-            name: 'John Doe',
-            manaer: '✓',
-            basic: '✓',
-            tnr: '✓',
-            scan: 'N/A',
-          },
-          {
-            id: '993456',
-            name: 'Jordan Maxson',
-            manaer: 'N/A',
-            basic: 'N/A',
-            tnr: '✓',
-            scan: 'N/A',
-          },
-          {
-            id: '546789',
-            name: 'Connie Ringor',
-            manaer: 'N/A',
-            basic: 'N/A',
-            tnr: 'N/A',
-            scan: 'N/A',
-          },
-          {
-            id: '102135',
-            name: 'Jimmy Falcon',
-            manaer: '✓',
-            basic: '✓',
-            tnr: '✓',
-            scan: '✓',
-          },
-          {
-            id: '345564',
-            name: 'Larma Beiber',
-            manaer:'✓',
-            basic: '✓',
-            tnr: 'N/A',
-            scan: 'N/A',
-          },
-          {
-            id: '787841',
-            name: 'Delmar Rios',
-            manaer: '✓',
-            basic: 'N/A',
-            tnr: 'N/A',
-            scan: '✓',
-          },
-          {
-            id: '513322',
-            name: 'Ringar Mayo',
-            manaer: 'N/A',
-            basic: 'N/A',
-            tnr: 'N/A',
-            scan: '✓',
-          },
-          {
-            id: '333456',
-            name: 'Kobe Santos',
-            manaer: '✓',
-            basic:'✓',
-            tnr:'✓',
-            scan: '✓',
-          },
-          {
-            id: '564631',
-            name: 'Terrence Mardgeer',
-            manaer: '✓',
-            basic: 'N/A',
-            tnr: 'N/A',
-            scan: '✓',
-          },
-          {
-            id: '446545',
-            name: 'Tim Lassiter',
-            manaer: '✓',
-            basic: '✓',
-            tnr: '✓',
-            scan: '✓',
-          },
-        ],
+        items: [],
     }),
 
     created: function(){
@@ -505,12 +411,19 @@
 
               axios.get('/certificationData')
               .then(response =>{
-                this.headers = response.data
-                console.log(response.data)
+                this.isTableLoading = true
+                this.headers = response.data[0]
+                this.items = response.data[1]
+                console.log(response.data[1])
+                console.log(response.data[0])
               })
               .catch(error =>{
-              console.log(error.response);
+                    console.log(error.response);
               })
+              .finally(() => {
+                  this.isTableLoading = false
+              });
+
 
           },
 

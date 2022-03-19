@@ -19,23 +19,22 @@ use App\Models\EmployeeCertification;
 |
 */
 Route::get('/test', function(){
-    $cert_type = CertificationType::all()->pluck('cert_types')->toArray();
-    $certs = EmployeeCertification::all()->toArray();
+    $certif_type = CertificationType::all()->pluck('cert_types')->toArray();
+    $certis = EmployeeCertification::all()->toArray();
 
     $arr = array();
-    foreach($certs as $ca){
-        $arr[] = array_combine($cert_type,explode(',',$ca['certification_type']));   
+    foreach($certis as $ca){
+        $arr[] = array_combine($certif_type,explode(',',$ca['certification_type']));
     }
     $di=array();
-    foreach($certs as $cert){
+    foreach($certis as $cert){
         $di[] = $cert;
     }
-    $res = array();
+    $result = array();
     foreach($arr as $k => $v){
-        $res[$k] = array_merge($di[$k],$arr[$k]);
+        $result[$k] = array_merge($di[$k],$arr[$k]);
     }
 
-    dd($res);
 });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');

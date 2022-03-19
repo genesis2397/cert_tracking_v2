@@ -30,13 +30,33 @@ class DashboardController extends Controller
         ->map( function($query){
             return [
                 'text' =>  strtoupper($query->cert_types),
-                'value' => $query->cert_types
+                'value' => $query->cert_types,
+                'sortable'=>false
             ];
         })->toArray();
 
-         $header_default_1 = [['text'=>'OCN','align'=>'start','sortable'=>'false', 'value'=>'id'],['text'=>'Employee Name','value'=>'name']];
-         $header_default_2 = [['text'=>'Action','value'=>'actions', 'sortable'=>'false']];
-        return response()->json(array_merge($header_default_1,$cert_data,$header_default_2));
+         $header_default_1 = [['text'=>'OCN','align'=>'start','sortable'=>'false', 'value'=>'employee_id'],['text'=>'Employee Name','value'=>'employee_name']];
+         $header_default_2 = [['text'=>'Action','value'=>'actions', 'sortable'=>false]];
+
+        //  ....................table items..........................
+
+        $certif_type = CertificationType::all()->pluck('cert_types')->toArray();
+        $certis = EmployeeCertification::all()->toArray();
+
+        $arr = array();
+        foreach($certis as $ca){
+            $arr[] = array_combine($certif_type,explode(',',$ca['certification_type']));
+        }
+        $di=array();
+        foreach($certis as $cert){
+            $di[] = $cert;
+        }
+        $result = array();
+        foreach($arr as $k => $v){
+            $result[$k] = array_merge($di[$k],$arr[$k]);
+        }
+
+        return response()->json(array(array_merge($header_default_1,$cert_data,$header_default_2),$result));
     }
     /**
      * Show the form for creating a new resource.

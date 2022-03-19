@@ -4036,12 +4036,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4052,6 +4046,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
     return _ref = {
       isLoading: true,
+      isTableLoading: false,
       valid: true,
       nameRules: [function (v) {
         return !!v || 'Name is required';
@@ -4068,16 +4063,16 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       search: '',
       editedIndex: -1,
       editedItem: {
-        id: '',
-        name: '',
+        employee_id: '',
+        employee_name: '',
         manaer: 'N/A',
         basic: 'N/A',
         tnr: 'N/A',
         scan: 'N/A'
       },
       defaultItem: {
-        id: '',
-        name: '',
+        employee_id: '',
+        employee_name: '',
         manaer: 'N/A',
         basic: 'N/A',
         tnr: 'N/A',
@@ -4085,84 +4080,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       },
       dialogDelete: false,
       links: [['mdi-inbox-arrow-down', 'Inbox'], ['mdi-send', 'Send'], ['mdi-delete', 'Trash'], ['mdi-alert-octagon', 'Spam']]
-    }, _defineProperty(_ref, "page", 1), _defineProperty(_ref, "pageCount", 0), _defineProperty(_ref, "itemsPerPage", 10), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", []), _defineProperty(_ref, "items", [{
-      id: '203446',
-      name: 'Ricky Jamison',
-      manaer: '✓',
-      basic: 'N/A',
-      tnr: '✓',
-      scan: 'N/A'
-    }, {
-      id: '441265',
-      name: 'John Doe',
-      manaer: '✓',
-      basic: '✓',
-      tnr: '✓',
-      scan: 'N/A'
-    }, {
-      id: '993456',
-      name: 'Jordan Maxson',
-      manaer: 'N/A',
-      basic: 'N/A',
-      tnr: '✓',
-      scan: 'N/A'
-    }, {
-      id: '546789',
-      name: 'Connie Ringor',
-      manaer: 'N/A',
-      basic: 'N/A',
-      tnr: 'N/A',
-      scan: 'N/A'
-    }, {
-      id: '102135',
-      name: 'Jimmy Falcon',
-      manaer: '✓',
-      basic: '✓',
-      tnr: '✓',
-      scan: '✓'
-    }, {
-      id: '345564',
-      name: 'Larma Beiber',
-      manaer: '✓',
-      basic: '✓',
-      tnr: 'N/A',
-      scan: 'N/A'
-    }, {
-      id: '787841',
-      name: 'Delmar Rios',
-      manaer: '✓',
-      basic: 'N/A',
-      tnr: 'N/A',
-      scan: '✓'
-    }, {
-      id: '513322',
-      name: 'Ringar Mayo',
-      manaer: 'N/A',
-      basic: 'N/A',
-      tnr: 'N/A',
-      scan: '✓'
-    }, {
-      id: '333456',
-      name: 'Kobe Santos',
-      manaer: '✓',
-      basic: '✓',
-      tnr: '✓',
-      scan: '✓'
-    }, {
-      id: '564631',
-      name: 'Terrence Mardgeer',
-      manaer: '✓',
-      basic: 'N/A',
-      tnr: 'N/A',
-      scan: '✓'
-    }, {
-      id: '446545',
-      name: 'Tim Lassiter',
-      manaer: '✓',
-      basic: '✓',
-      tnr: '✓',
-      scan: '✓'
-    }]), _ref;
+    }, _defineProperty(_ref, "page", 1), _defineProperty(_ref, "pageCount", 0), _defineProperty(_ref, "itemsPerPage", 10), _defineProperty(_ref, "search", ''), _defineProperty(_ref, "headers", []), _defineProperty(_ref, "items", []), _ref;
   },
   created: function created() {
     this.getInitialData();
@@ -4185,10 +4103,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _this = this;
 
       axios.get('/certificationData').then(function (response) {
-        _this.headers = response.data;
-        console.log(response.data);
+        _this.isTableLoading = true;
+        _this.headers = response.data[0];
+        _this.items = response.data[1];
+        console.log(response.data[1]);
+        console.log(response.data[0]);
       })["catch"](function (error) {
         console.log(error.response);
+      })["finally"](function () {
+        _this.isTableLoading = false;
       });
     },
     isLetter: function isLetter(e) {
@@ -44500,10 +44423,10 @@ var render = function() {
                       _c("v-data-table", {
                         staticClass: "elevation-1",
                         attrs: {
+                          loading: _vm.isTableLoading,
                           headers: _vm.headers,
                           search: _vm.search,
                           items: _vm.items,
-                          "sort-by": "name",
                           page: _vm.page,
                           "items-per-page": _vm.itemsPerPage,
                           "hide-default-footer": ""
@@ -44674,18 +44597,18 @@ var render = function() {
                                                                         value:
                                                                           _vm
                                                                             .editedItem
-                                                                            .id,
+                                                                            .employee_id,
                                                                         callback: function(
                                                                           $$v
                                                                         ) {
                                                                           _vm.$set(
                                                                             _vm.editedItem,
-                                                                            "id",
+                                                                            "employee_id",
                                                                             $$v
                                                                           )
                                                                         },
                                                                         expression:
-                                                                          "editedItem.id"
+                                                                          "editedItem.employee_id"
                                                                       }
                                                                     }
                                                                   )
@@ -44725,18 +44648,18 @@ var render = function() {
                                                                         value:
                                                                           _vm
                                                                             .editedItem
-                                                                            .name,
+                                                                            .employee_name,
                                                                         callback: function(
                                                                           $$v
                                                                         ) {
                                                                           _vm.$set(
                                                                             _vm.editedItem,
-                                                                            "name",
+                                                                            "employee_name",
                                                                             $$v
                                                                           )
                                                                         },
                                                                         expression:
-                                                                          "editedItem.name"
+                                                                          "editedItem.employee_name"
                                                                       }
                                                                     }
                                                                   )
@@ -44995,9 +44918,9 @@ var render = function() {
                                                             disabled:
                                                               !_vm.valid ||
                                                               !_vm.editedItem
-                                                                .id ||
+                                                                .employee_id ||
                                                               !_vm.editedItem
-                                                                .name
+                                                                .employee_name
                                                           },
                                                           on: {
                                                             click: _vm.save
@@ -45147,20 +45070,7 @@ var render = function() {
                             {
                               key: "no-data",
                               fn: function() {
-                                return [
-                                  _c(
-                                    "v-btn",
-                                    {
-                                      attrs: { color: "primary" },
-                                      on: { click: _vm.initialize }
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n                  Reset\n                "
-                                      )
-                                    ]
-                                  )
-                                ]
+                                return undefined
                               },
                               proxy: true
                             },
