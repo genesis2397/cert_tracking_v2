@@ -17,7 +17,7 @@
         >      <v-icon dark size="70">
         mdi-account-circle
       </v-icon></v-avatar>
-<v-toolbar-title class='toolbar_title'><img :src="require('../../../storage/app/images/daisho_png.png').default" style="width:200px; height:auto; position: relative; bottom: 55px;"></v-toolbar-title>
+<v-toolbar-title class='toolbar_title'><img :src="require('../../../public/images/daisho_png.png').default" style="width:200px; height:auto; position: relative; bottom: 55px;"></v-toolbar-title>
 </div>
         <div class="mb-40" style="position:relative; bottom:130px;">Hello Genesis!</div>
       </v-sheet>

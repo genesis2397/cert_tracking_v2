@@ -3122,7 +3122,7 @@ module.exports = {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21.4","name":"axios","escapedName":"axios","rawSpec":"^0.21.4","saveSpec":null,"fetchSpec":"^0.21.4"},"_requiredBy":["#DEV:/","#USER","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21.4","_where":"C:\\\\Users\\\\Software Developer\\\\code\\\\cert_tracking","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\Users\\\\ADMIN\\\\Desktop\\\\code\\\\cert_tracking"]],"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/","/@inertiajs/inertia"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\Users\\\\ADMIN\\\\Desktop\\\\code\\\\cert_tracking","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ }),
 
@@ -4195,7 +4195,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       var _char = String.fromCharCode(e.keyCode); // Get the character
 
 
-      if (/^[a-zA-Z\s'-.]*$/.test(_char)) return true; // Match with regex 
+      if (/^[a-zA-Z\s'-.]*$/.test(_char)) return true; // Match with regex
       else e.preventDefault(); // If not match, don't add to input text
     },
     getColorforFat: function getColorforFat(calories) {
@@ -9690,7 +9690,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.stick{\r\n    position: sticky;\n}\n.color_for_text{\r\n    color: #0000B9 !important;\n}\n.color_for_card_text{\r\n   color: #0000B9;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.stick{\n    position: sticky;\n}\n.color_for_text{\n    color: #0000B9 !important;\n}\n.color_for_card_text{\n   color: #0000B9;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9869,40 +9869,10 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 
-/***/ "./storage/app/images/F60U5T3q1nIQBntH5gTMtxNrNxSOMW0ItohLrgXd.webp":
-/*!**************************************************************************!*\
-  !*** ./storage/app/images/F60U5T3q1nIQBntH5gTMtxNrNxSOMW0ItohLrgXd.webp ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/F60U5T3q1nIQBntH5gTMtxNrNxSOMW0ItohLrgXd.webp?d6e3ca870f1e2994517360571c9b3fba");
-
-/***/ }),
-
-/***/ "./storage/app/images/V6wkVGf0FP0AAtxU54sKeIf4VsbdMutK2nFfF0d0.webp":
-/*!**************************************************************************!*\
-  !*** ./storage/app/images/V6wkVGf0FP0AAtxU54sKeIf4VsbdMutK2nFfF0d0.webp ***!
-  \**************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/V6wkVGf0FP0AAtxU54sKeIf4VsbdMutK2nFfF0d0.webp?d6e3ca870f1e2994517360571c9b3fba");
-
-/***/ }),
-
-/***/ "./storage/app/images/daisho_png.png":
-/*!*******************************************!*\
-  !*** ./storage/app/images/daisho_png.png ***!
-  \*******************************************/
+/***/ "./public/images/daisho_png.png":
+/*!**************************************!*\
+  !*** ./public/images/daisho_png.png ***!
+  \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -45712,29 +45682,6 @@ var render = function() {
                         )
                       ]
                     }
-                  },
-                  {
-                    key: "item.cert_image",
-                    fn: function(props) {
-                      return [
-                        _c("img", {
-                          staticStyle: {
-                            width: "30px",
-                            height: "auto",
-                            cursor: "pointer"
-                          },
-                          attrs: {
-                            src: __webpack_require__("./storage/app/images sync recursive ^\\.\\/.*$")("./" +
-                              props.item.cert_image).default
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.scar(props.item.cert_image)
-                            }
-                          }
-                        })
-                      ]
-                    }
                   }
                 ])
               })
@@ -45796,21 +45743,7 @@ var render = function() {
                     ])
                   ],
                   1
-                ),
-                _vm._v(" "),
-                _c("img", {
-                  staticStyle: {
-                    width: "500px",
-                    height: "auto",
-                    cursor: "pointer",
-                    position: "relative",
-                    left: "100px"
-                  },
-                  attrs: {
-                    src: __webpack_require__("./storage/app/images sync recursive ^\\.\\/.*$")("./" + _vm.changed)
-                      .default
-                  }
-                })
+                )
               ],
               1
             )
@@ -45924,7 +45857,7 @@ var render = function() {
         _c("img", {
           staticStyle: { width: "200px", height: "auto", cursor: "pointer" },
           attrs: {
-            src: __webpack_require__(/*! ../../../storage/app/images/daisho_png.png */ "./storage/app/images/daisho_png.png").default
+            src: __webpack_require__(/*! ../../../public/images/daisho_png.png */ "./public/images/daisho_png.png").default
           }
         })
       ]),
@@ -46621,7 +46554,7 @@ var render = function() {
                     bottom: "55px"
                   },
                   attrs: {
-                    src: __webpack_require__(/*! ../../../storage/app/images/daisho_png.png */ "./storage/app/images/daisho_png.png").default
+                    src: __webpack_require__(/*! ../../../public/images/daisho_png.png */ "./public/images/daisho_png.png").default
                   }
                 })
               ])
@@ -103763,40 +103696,6 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = "./resources/js/Pages sync recursive ^\\.\\/.*$";
-
-/***/ }),
-
-/***/ "./storage/app/images sync recursive ^\\.\\/.*$":
-/*!*******************************************!*\
-  !*** ./storage/app/images/ sync ^\.\/.*$ ***!
-  \*******************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var map = {
-	"./F60U5T3q1nIQBntH5gTMtxNrNxSOMW0ItohLrgXd.webp": "./storage/app/images/F60U5T3q1nIQBntH5gTMtxNrNxSOMW0ItohLrgXd.webp",
-	"./V6wkVGf0FP0AAtxU54sKeIf4VsbdMutK2nFfF0d0.webp": "./storage/app/images/V6wkVGf0FP0AAtxU54sKeIf4VsbdMutK2nFfF0d0.webp",
-	"./daisho_png.png": "./storage/app/images/daisho_png.png"
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = "./storage/app/images sync recursive ^\\.\\/.*$";
 
 /***/ }),
 

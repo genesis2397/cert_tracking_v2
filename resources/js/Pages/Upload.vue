@@ -106,9 +106,9 @@
                                 mdi-delete
                             </v-icon>
                         </template>
-                        <template slot="item.cert_image" slot-scope="props">
-                            <img :src="require('../../../storage/app/images/'+props.item.cert_image).default" style="width:30px; height:auto; cursor:pointer;" @click='scar(props.item.cert_image)'>
-                        </template>
+                        <!-- <template slot="item.cert_image" slot-scope="props"> -->
+                            <!-- <img :src="require('../../../storage/app/images/'+props.item.cert_image).default" style="width:30px; height:auto; cursor:pointer;" @click='scar(props.item.cert_image)'> -->
+                        <!-- </template> -->
                     </v-data-table>
                 </template>
                 <div class="text-center pt-2">
@@ -134,7 +134,7 @@
                     mdi-close
                 </v-icon>
                 </v-btn>
-          <img :src="require('../../../storage/app/images/'+changed).default" style="width:500px; height:auto; cursor:pointer; position:relative; left:100px;">
+          <!-- <img :src="require('../../../storage/app/images/'+changed).default" style="width:500px; height:auto; cursor:pointer; position:relative; left:100px;"> -->
             </div>
         </v-row>
     </app-layout>

@@ -475,7 +475,7 @@
             basic: '✓',
             tnr: '✓',
             scan: '✓',
-          }, 
+          },
         ],
     }),
 
@@ -516,7 +516,7 @@
 
           isLetter(e) {
               let char = String.fromCharCode(e.keyCode); // Get the character
-              if(/^[a-zA-Z\s'-.]*$/.test(char)) return true; // Match with regex 
+              if(/^[a-zA-Z\s'-.]*$/.test(char)) return true; // Match with regex
               else e.preventDefault(); // If not match, don't add to input text
           },
 
