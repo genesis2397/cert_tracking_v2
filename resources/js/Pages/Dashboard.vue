@@ -427,6 +427,55 @@
 
           },
 
+          addData() {
+
+              axios.post('/addData', this.editedItem)
+              .then(response =>{
+                console.log(response.data)
+              })
+              .catch(error =>{
+                    console.log(error.response);
+              })
+              .finally(() => {
+
+              });
+
+
+          },
+
+
+          editData() {
+
+              axios.post('/editData', this.editedItem)
+              .then(response =>{
+                console.log(response.data)
+              })
+              .catch(error =>{
+                    console.log(error.response);
+              })
+              .finally(() => {
+
+              });
+
+
+          },
+
+          deleteData() {
+
+              axios.post('/deleteData', this.editedItem)
+              .then(response =>{
+                console.log(response.data)
+              })
+              .catch(error =>{
+                    console.log(error.response);
+              })
+              .finally(() => {
+
+              });
+
+
+          },
+
           isLetter(e) {
               let char = String.fromCharCode(e.keyCode); // Get the character
               if(/^[a-zA-Z\s'-.]*$/.test(char)) return true; // Match with regex
@@ -462,7 +511,8 @@
       },
 
       deleteItemConfirm () {
-        this.items.splice(this.editedIndex, 1)
+        this.deleteData()
+        this.getInitialData()
         this.closeDelete()
       },
 
@@ -484,9 +534,12 @@
 
       save () {
         if (this.editedIndex > -1) {
-          Object.assign(this.items[this.editedIndex], this.editedItem)
+          this.editData();
+          this.getInitialData();
+         // Object.assign(this.items[this.editedIndex], this.editedItem)
         } else {
-          this.items.push(this.editedItem)
+          this.addData();
+          this.getInitialData();
         }
         this.close()
       },

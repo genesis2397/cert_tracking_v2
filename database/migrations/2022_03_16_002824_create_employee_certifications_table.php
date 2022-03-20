@@ -18,8 +18,8 @@ class CreateEmployeeCertificationsTable extends Migration
             $table->string('employee_id');
             $table->string('employee_name');
             $table->string('certification_type');
-            $table->string('cert_effectivity_date');
-            $table->string('cert_expiration_date');
+            $table->string('cert_effectivity_date')->nullable();
+            $table->string('cert_expiration_date')->nullable();
             $table->timestamps();
         });
     }

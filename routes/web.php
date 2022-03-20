@@ -8,6 +8,7 @@ use App\Http\Controllers\WelcomeController;
 use App\Models\CertificationType;
 use App\Models\Employee;
 use App\Models\EmployeeCertification;
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,7 +35,6 @@ Route::get('/test', function(){
     foreach($arr as $k => $v){
         $result[$k] = array_merge($di[$k],$arr[$k]);
     }
-
 });
 
 Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
@@ -45,6 +45,9 @@ Route::middleware(['auth:sanctum','isAdmin'])->group(function() {
     Route::get('/delano', [ImagesController::class, 'delano'])->name('delano');
     Route::post('/images-upload', [ImagesController::class, 'upload_image'])->name('upload_image');
     Route::get('/certificationData', [DashboardController::class, 'certificationData']);
+    Route::post('/addData', [DashboardController::class, 'addData']);
+    Route::post('/editData', [DashboardController::class, 'editData']);
+    Route::post('/deleteData', [DashboardController::class, 'deleteData']);
 });
 
 

@@ -4114,6 +4114,27 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.isTableLoading = false;
       });
     },
+    addData: function addData() {
+      axios.post('/addData', this.editedItem).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error.response);
+      })["finally"](function () {});
+    },
+    editData: function editData() {
+      axios.post('/editData', this.editedItem).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error.response);
+      })["finally"](function () {});
+    },
+    deleteData: function deleteData() {
+      axios.post('/deleteData', this.editedItem).then(function (response) {
+        console.log(response.data);
+      })["catch"](function (error) {
+        console.log(error.response);
+      })["finally"](function () {});
+    },
     isLetter: function isLetter(e) {
       var _char = String.fromCharCode(e.keyCode); // Get the character
 
@@ -4144,7 +4165,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.dialogDelete = true;
     },
     deleteItemConfirm: function deleteItemConfirm() {
-      this.items.splice(this.editedIndex, 1);
+      this.deleteData();
+      this.getInitialData();
       this.closeDelete();
     },
     close: function close() {
@@ -4167,9 +4189,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     save: function save() {
       if (this.editedIndex > -1) {
-        Object.assign(this.items[this.editedIndex], this.editedItem);
+        this.editData();
+        this.getInitialData(); // Object.assign(this.items[this.editedIndex], this.editedItem)
       } else {
-        this.items.push(this.editedItem);
+        this.addData();
+        this.getInitialData();
       }
 
       this.close();

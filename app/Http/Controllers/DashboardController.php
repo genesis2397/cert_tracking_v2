@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\Employee;
 use App\Models\CertificationType;
 use App\Models\EmployeeCertification;
-
+use Carbon\Carbon;
 
 
 class DashboardController extends Controller
@@ -57,6 +57,38 @@ class DashboardController extends Controller
         }
 
         return response()->json(array(array_merge($header_default_1,$cert_data,$header_default_2),$result));
+    }
+
+    public function addData(Request $request){
+
+        EmployeeCertification::create([
+            'employee_id'=>$request->employee_id,
+            'employee_name'=>$request->employee_name,
+            'certification_type'=>implode(',',$request->except(['employee_id','employee_name'])),
+            'cert_effectivity_date'=>Carbon::now(),
+            'cert_expiration_date'=>Carbon::now()
+        ]);
+
+        return response()->json("Data inserted successfully");
+
+    }
+
+    public function editData(Request $request){
+        EmployeeCertification::where('employee_id',$request->employee_id)->update(
+            [
+                'employee_id'=>$request->employee_id,
+                'employee_name'=>$request->employee_name,
+                'certification_type'=>implode(',',$request->except(['id','employee_id','employee_name','created_at','updated_at','cert_effectivity_date','cert_expiration_date','certification_type'])),
+                'cert_effectivity_date'=>Carbon::now(),
+                'cert_expiration_date'=>Carbon::now()
+            ]);
+
+            return response()->json('success updated');
+    }
+
+    public function deleteData(Request $request){
+        EmployeeCertification::where('employee_id',$request->employee_id)->delete();
+        return response()->json('deleted updated');
     }
     /**
      * Show the form for creating a new resource.
