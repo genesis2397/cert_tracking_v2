@@ -4036,6 +4036,48 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
@@ -4053,6 +4095,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       }, function (v) {
         return v && v.length >= 5 || 'Name must be greater than 5 characters';
       }],
+      successSnackbar: false,
+      updateSnackbar: false,
+      deleteSnackbar: false,
       choices: ['✓', 'N/A'],
       cards: ['Certification Tracking Table'],
       page: 1,
@@ -4115,22 +4160,31 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       });
     },
     addData: function addData() {
+      var _this2 = this;
+
       axios.post('/addData', this.editedItem).then(function (response) {
         console.log(response.data);
+        _this2.successSnackbar = true;
       })["catch"](function (error) {
         console.log(error.response);
       })["finally"](function () {});
     },
     editData: function editData() {
+      var _this3 = this;
+
       axios.post('/editData', this.editedItem).then(function (response) {
         console.log(response.data);
+        _this3.updateSnackbar = true;
       })["catch"](function (error) {
         console.log(error.response);
       })["finally"](function () {});
     },
     deleteData: function deleteData() {
+      var _this4 = this;
+
       axios.post('/deleteData', this.editedItem).then(function (response) {
         console.log(response.data);
+        _this4.deleteSnackbar = true;
       })["catch"](function (error) {
         console.log(error.response);
       })["finally"](function () {});
@@ -4170,21 +4224,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.closeDelete();
     },
     close: function close() {
-      var _this2 = this;
+      var _this5 = this;
 
       this.dialog = false;
       this.$nextTick(function () {
-        _this2.editedItem = Object.assign({}, _this2.defaultItem);
-        _this2.editedIndex = -1;
+        _this5.editedItem = Object.assign({}, _this5.defaultItem);
+        _this5.editedIndex = -1;
       });
     },
     closeDelete: function closeDelete() {
-      var _this3 = this;
+      var _this6 = this;
 
       this.dialogDelete = false;
       this.$nextTick(function () {
-        _this3.editedItem = Object.assign({}, _this3.defaultItem);
-        _this3.editedIndex = -1;
+        _this6.editedItem = Object.assign({}, _this6.defaultItem);
+        _this6.editedIndex = -1;
       });
     },
     save: function save() {
@@ -44406,6 +44460,90 @@ var render = function() {
   return _c(
     "app-layout",
     [
+      _c(
+        "v-snackbar",
+        {
+          attrs: {
+            timeout: 3000,
+            value: true,
+            absolute: "",
+            bottom: "",
+            color: "success",
+            success: "",
+            top: "",
+            right: ""
+          },
+          model: {
+            value: _vm.successSnackbar,
+            callback: function($$v) {
+              _vm.successSnackbar = $$v
+            },
+            expression: "successSnackbar"
+          }
+        },
+        [
+          _c("v-icon", [_vm._v("mdi-check")]),
+          _vm._v("\n        A record has been added successfully.\n        ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: {
+            timeout: 3000,
+            value: true,
+            absolute: "",
+            bottom: "",
+            color: "deep-purple accent-4",
+            success: "",
+            top: "",
+            right: ""
+          },
+          model: {
+            value: _vm.updateSnackbar,
+            callback: function($$v) {
+              _vm.updateSnackbar = $$v
+            },
+            expression: "updateSnackbar"
+          }
+        },
+        [
+          _c("v-icon", [_vm._v("mdi-check")]),
+          _vm._v("\n        A record has been deleted successfully.\n        ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "v-snackbar",
+        {
+          attrs: {
+            timeout: 3000,
+            value: true,
+            absolute: "",
+            bottom: "",
+            color: "blue-grey",
+            success: "",
+            top: "",
+            right: ""
+          },
+          model: {
+            value: _vm.deleteSnackbar,
+            callback: function($$v) {
+              _vm.deleteSnackbar = $$v
+            },
+            expression: "deleteSnackbar"
+          }
+        },
+        [
+          _c("v-icon", [_vm._v("mdi-delete")]),
+          _vm._v("\n        A record has been deleted successfully.\n        ")
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "v-row",
         _vm._l(_vm.cards, function(card) {

@@ -1,6 +1,48 @@
 
 <template>
     <app-layout>
+            <v-snackbar
+            v-model="successSnackbar"
+            :timeout="3000"
+            :value="true"
+            absolute
+            bottom
+            color="success"
+            success
+            top
+            right
+            >
+            <v-icon>mdi-check</v-icon>
+            A record has been added successfully.
+            </v-snackbar>
+            <v-snackbar
+            v-model="updateSnackbar"
+            :timeout="3000"
+            :value="true"
+            absolute
+            bottom
+            color="deep-purple accent-4"
+            success
+            top
+            right
+            >
+            <v-icon>mdi-check</v-icon>
+            A record has been deleted successfully.
+            </v-snackbar>
+            <v-snackbar
+            v-model="deleteSnackbar"
+            :timeout="3000"
+            :value="true"
+            absolute
+            bottom
+            color="blue-grey"
+            success
+            top
+            right
+            >
+            <v-icon>mdi-delete</v-icon>
+            A record has been deleted successfully.
+            </v-snackbar>
         <v-row>
           <v-col
             v-for="card in cards"
@@ -345,6 +387,9 @@
         v => !!v || 'Name is required',
         v => (v && v.length >= 5) || 'Name must be greater than 5 characters'
       ],
+      successSnackbar : false,
+      updateSnackbar : false,
+      deleteSnackbar : false,
       choices : ['✓','N/A'],
       cards: ['Certification Tracking Table'],
       page: 1,
@@ -432,6 +477,7 @@
               axios.post('/addData', this.editedItem)
               .then(response =>{
                 console.log(response.data)
+                this.successSnackbar = true
               })
               .catch(error =>{
                     console.log(error.response);
@@ -449,6 +495,7 @@
               axios.post('/editData', this.editedItem)
               .then(response =>{
                 console.log(response.data)
+                this.updateSnackbar = true
               })
               .catch(error =>{
                     console.log(error.response);
@@ -465,6 +512,7 @@
               axios.post('/deleteData', this.editedItem)
               .then(response =>{
                 console.log(response.data)
+                this.deleteSnackbar = true
               })
               .catch(error =>{
                     console.log(error.response);
